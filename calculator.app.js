@@ -22,7 +22,7 @@ const displayElement = document.querySelector('#display')
 
 // 3. what functions I need.
 function clickOnNumber(event) {
-    event.target.textContent;
+    // event.target.textContent;
     console.log(clickOnNumber)
 
 
@@ -30,17 +30,21 @@ function clickOnNumber(event) {
         number1 = event.target.textContent
         displayElement.textContent = number1
     }
-    else if(number1 && !number2 && !operator) {
-        number2 = event.target.textContent
+    else if (number1 && !number2 && !operator) {
+        number1 = event.target.textContent
         displayElement.textContent = number1
     }
-    else if(number1 && !operator && !number2) {
-        operator = event.target.textContent
-        displayElement.textContent = operator
+    else if (number1 && operator && !number2) {
+        number2 = event.target.textContent
+        displayElement.textContent = number2
+    }
+    else if (number1 && operator && number2) {
+        number2 = event.target.textContent
+        displayElement.textContent = number2
     }
 
-
-    console.log(number1 )
+    console.log('operator: ' + operator)
+    console.log('number2: ' + number2)
 
 }
 
@@ -48,40 +52,76 @@ clickOnNumber();
 
 
 
-function clickOnOperator(event){
-    event.target.textContent
-    displayElement.textContent // where do i put this
+function clickOnOperator(){
 
-    if(operator === '+'){
-        return number1 + number2
+
+    if(number1 && !operator && number2){
+         operator = event.target.textContent
     }
-    else if(operator === '-'){
-        return number1 - number2
-    }
-    else if(operator === '*'){
-        return number1 * number2
-    }
-    else if(operator === '/'){
-        return number1 / number2
-    }
+
 }
 
+clickOnOperator()
 
+
+
+
+
+
+
+
+
+
+
+
+function clickOnkEqual(event) {
+    event.target.textContent
+    displayElement.textContent // where do i put this?
+
+    if (operator === '+') {
+        return Number(number1) + Number(number2)
+    }
+    else if (operator === '-') {
+        return Number(number1) - Number(number2)
+    }
+    else if (operator === '*') {
+        return Number(number1) * Number(number2)
+    }
+    else if (operator === '/') {
+        return Number(number1) / Number(number2)
+    }
+
+
+
+
+}
+
+function clickOnClear(event){
+    if(event.target.textContent === 'C'){
+        number1 = null
+        number2 = null
+        operator = null
+        displayElement.textContent === ''
+    }
+}
 
 
 
 
 /// 4. addEventListener to the functions I have. 
+
+
+
 for (let i = 0; 0 < numberElements.length; i++) {
     numberElements.addEventListener('click', clickOnNumber)
 }
 
 for (let i = 0; 0 < operatorsElements.length; i++) {
-    operatorElements.addEventListener('click', )
+    operatorElements.addEventListener('click',)
 }
 
 for (let i = 0; 0 < equalElement.length; i++) {
-    operatorElements.addEventListener('click', )
+    operatorElements.addEventListener('click',)
 }
 
 
